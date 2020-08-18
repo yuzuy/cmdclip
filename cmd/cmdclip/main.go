@@ -1,6 +1,7 @@
 package main
 
 import (
+	"errors"
 	"flag"
 	"fmt"
 	"os"
@@ -16,6 +17,9 @@ func run() int {
 	flag.Parse()
 
 	cmd := flag.Args()
+	if len(cmd) == 0 {
+		return report(errors.New("please specify a command"))
+	}
 	if err := cmdclip.Clip(cmd[0], cmd[1:]...); err != nil {
 		return report(err)
 	}
