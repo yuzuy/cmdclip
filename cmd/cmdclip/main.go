@@ -9,6 +9,10 @@ import (
 	"github.com/yuzuy/cmdclip"
 )
 
+var (
+	pFlag = flag.Bool("p", false, "Print output of the command")
+)
+
 func main() {
 	os.Exit(run())
 }
@@ -20,8 +24,12 @@ func run() int {
 	if len(cmd) == 0 {
 		return report(errors.New("please specify a command"))
 	}
-	if err := cmdclip.Clip(cmd[0], cmd[1:]...); err != nil {
+	out, err := cmdclip.Clip(cmd[0], cmd[1:]...)
+	if err != nil {
 		return report(err)
+	}
+	if *pFlag {
+		fmt.Println(out)
 	}
 
 	return 0

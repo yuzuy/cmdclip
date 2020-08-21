@@ -11,3 +11,9 @@ go get -u github.com/yuzuy/cmdclip/cmd/cmdclip
 cmdclip echo 'hoge' // clip "hoge"
 cmdclip cat main.go // clip content of main.go
 ```
+
+### Flags
+#### p - Print output of the command
+```
+cmdclip -p echo 'hoge' // clip "hoge" and print "hoge"
+```
